@@ -1,6 +1,8 @@
 #!/usr/bin/python3
+final_str = ""
 for idx_str in reversed(range(97, 123)):
     if (idx_str % 2 == 0):
-        print(chr(idx_str), end='')
+        final_str += chr(idx_str)
     else:
-        print(chr(idx_str - 32), end='')
+        final_str += chr(idx_str - 32)
+print(final_str, end='')
