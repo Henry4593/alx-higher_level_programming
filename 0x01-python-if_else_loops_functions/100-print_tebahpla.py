@@ -1,5 +1,5 @@
 #!/usr/bin/python3
 idx = 0
 for char in range(ord('z'), ord('a') - 1, -1):
-	print("{}".format(chr(char - idx)), end="")
-	idx = 32 if idx == 0 else 0
+    print("{}".format(chr(char - idx)), end="")
+    idx = 32 if idx == 0 else 0
