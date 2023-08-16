@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 def best_score(a_dictionary):
     if a_dictionary is not None:
-        list_keys = a_dictionary.keys()
+        list_keys = list(a_dictionary.keys())
         best_score = 0
         best_student = ""
         for key in list_keys:
