@@ -3,9 +3,9 @@
 def safe_print_division(a, b):
     result = None
     try:
-        result = float(a) / b
-    except (ZeroDivisionError, TypeError, OverflowError, ValueError):
-        result = None
+        result = a / b
+    except ZeroDivisionError:
+        return None
     finally:
-        print("Inside result_div: {}".format(result))
+        print("Inside result: {}".format(result))
     return result
