@@ -13,9 +13,10 @@
           board (list): A list of lists representing the chessboard.
           solutions (list): A list of lists containing solutions.
 
-   Solutions are represented in the format [[r_queen, c_queen], [r_queen, c_queen], [r_queen, c_queen], [r_queen, c_queen]]
-   where `r_queen` and `c_queen` represent the row and column, respectively, where
-   a queen must be placed on the chessboard.
+   Solutions are represented in the format [[r_queen, c_queen],
+   [r_queen, c_queen], [r_queen, c_queen], [r_queen, c_queen]] where `r_queen`
+   and `c_queen` represent the row and column, respectively, where a queen must
+   be placed on the chessboard.
 """
 import sys
 
@@ -119,6 +120,7 @@ def x_out(board, row, col):
         board[r_queen][c_queen] = "x"
         c_queen -= 1
 
+
 def recursive_solution(board, row, queens, solutions):
     """Recursively solve an N-queens puzzle.
 
@@ -141,7 +143,7 @@ def recursive_solution(board, row, queens, solutions):
             temp_board[row][c_queen] = "Q"
             x_out(temp_board, row, c_queen)
             solutions = recursive_solution(temp_board, row + 1,
-                                        queens + 1, solutions)
+                                           queens + 1, solutions)
 
     return (solutions)
 
