@@ -1,0 +1,51 @@
+
+'''
+# Importing the required function
+>>> from importlib import import_module
+>>> add_integer = import_module('0-add_integer').add_integer
+
+# Test for valid arguments
+>>> add_integer(5, 3)
+8
+>>> add_integer(10)
+108
+>>> add_integer(7.2, 4.8)
+11
+
+# Test for invalid arguments
+>>> try:
+...     add_integer(float('inf'), float('inf'))
+... except Exception as err:
+...     print(err.args[0])
+cannot convert float infinity to integer
+>>> try:
+...     add_integer(float('inf'), 7)
+... except Exception as err:
+...     print(err.args[0])
+cannot convert float infinity to integer
+>>> try:
+...     add_integer(float('NaN'), 2)
+... except Exception as err:
+...     print(err.args[0])
+cannot convert float NaN to integer
+>>> try:
+...     add_integer('7', 1)
+... except TypeError as err:
+...     print(err.args[0])
+a must be an integer
+>>> try:
+...     add_integer(('6'), 1)
+... except TypeError as err:
+...     print(err.args[0])
+a must be an integer
+>>> try:
+...     add_integer(9, None)
+... except TypeError as err:
+...     print(err.args[0])
+b must be an integer
+>>> try:
+...     add_integer(5, '3')
+... except TypeError as err:
+...     print(err.args[0])
+b must be an integer
+'''
