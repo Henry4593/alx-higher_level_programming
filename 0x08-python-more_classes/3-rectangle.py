@@ -113,5 +113,5 @@ class Rectangle:
         for idx_i in range(self.__height):
             [created_rect.append('#') for idx_j in range(self.__width)]
             if idx_i != self.__height - 1:
-               created_rect.append("\n")
+                created_rect.append("\n")
         return "".join(created_rect)
