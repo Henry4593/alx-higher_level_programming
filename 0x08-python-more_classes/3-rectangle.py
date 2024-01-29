@@ -1,0 +1,117 @@
+#!/usr/bin/python3
+"""Defines a Rectangle class to represent rectangles."""
+
+
+class Rectangle:
+    """Represents a rectangle with width and height dimensions.
+
+    Attributes:
+        width (int): The width of the rectangle.
+        height (int): The height of the rectangle.
+    """
+
+    def __init__(self, width=0, height=0):
+        """Initializes a new Rectangle.
+
+        Args:
+            width (int): The width of the new rectangle. Defaults to 0.
+            height (int): The height of the new rectangle. Defaults to 0.
+
+        Raises:
+            TypeError: If width or height is not an integer.
+            ValueError: If width or height is negative.
+        """
+        self.width = width
+        self.height = height
+
+    @property
+    def width(self):
+        """Gets or sets the width of the rectangle.
+
+        Returns:
+            int: The current width of the rectangle.
+        """
+        return self.__width
+
+    @width.setter
+    def width(self, value):
+        """Sets the width of the rectangle.
+
+        Args:
+            value (int): The new width to set.
+
+        Raises:
+            TypeError: If value is not an integer.
+            ValueError: If value is negative.
+        """
+        if not isinstance(value, int):
+            raise TypeError("width must be an integer")
+        if value < 0:
+            raise ValueError("width must be >= 0")
+        self.__width = value
+
+    @property
+    def height(self):
+        """Gets or sets the height of the rectangle.
+
+        Returns:
+            int: The current height of the rectangle.
+        """
+        return self.__height
+
+    @height.setter
+    def height(self, value):
+        """Sets the height of the rectangle.
+
+        Args:
+            value (int): The new height to set.
+
+        Raises:
+            TypeError: If value is not an integer.
+            ValueError: If value is negative.
+        """
+        if not isinstance(value, int):
+            raise TypeError("height must be an integer")
+        if value < 0:
+            raise ValueError("height must be >= 0")
+        self.__height = value
+
+    def area(self):
+        """Calculates and returns the area of the rectangle.
+
+        Returns:
+            int: The area of the rectangle, calculated as width * height.
+        """
+        return self.__width * self.__height
+
+    def perimeter(self):
+        """Calculates and returns the perimeter of the rectangle.
+
+        Returns:
+            int: The perimeter of the rectangle, calculated as
+            2 * width + 2 * height.
+            If either width or height is 0, returns 0.
+        """
+        if self.__width == 0 or self.__height == 0:
+            return 0
+        return 2 * self.__width + 2 * self.__height
+
+    def __str__(self):
+        """Returns a printable representation of the rectangle using '#'
+           characters.
+
+        Returns:
+            str: A string representation of the rectangle, visually depicting
+                its shape using '#' characters for filled areas and newlines
+                for rows.
+                If either width or height is 0, returns an empty string.
+        """
+        if self.__width == 0 or self.__height == 0:
+            return ""
+
+        created_rect = []
+        for idx_i in range(self.__height):
+            [created_rect.append('#') for idx_j in range(self.__width)]
+            if idx_i != self.__height - 1:
+               created_rect.append("\n")
+        return "".join(created_rect)
