@@ -9,30 +9,30 @@ This module defines a matrix multiplication function
 Usage
 =====
 
-``lazy_matrix_mul(...)`` returns a new matrix representing the multiplication
-of ``m_a`` by ``m_b``.
+lazy_matrix_mul(...) returns a new matrix as the product of matrices
+m_a and m_b.
 
 ::
 
     >>> lazy_matrix_mul = __import__('101-lazy_matrix_mul').lazy_matrix_mul
     >>> m_a = [
-    ... [1, 2],
-    ... [3, 4],
+    ... [2, 3],
+    ... [4, 5],
     ... ]
     >>> m_b = m_a
     >>> print(lazy_matrix_mul(m_a, m_b))
-    [[ 7 10]
-     [15 22]]
+    [[ 16 21]
+     [28 37]]
 
 ::
 
-    >>> m_a = [[1, 2]]
+    >>> m_a = [[2, 2]]
     >>> m_b = [
-    ... [3, 4],
-    ... [5, 6]
+    ... [7, 6],
+    ... [9, 8]
     ... ]
     >>> print(lazy_matrix_mul(m_a, m_b))
-    [[13 16]]
+    [[32 28]]
 
 The function also works with floating-point numbers.
 
@@ -75,12 +75,12 @@ equal to the column count in ``m_b``), a ValueError is raised.
 ::
 
     >>> m_a = [
-    ... [1, 2],
+    ... [4, 7],
     ... [3, 4],
     ... ]
     >>> m_b = [
     ... [1, 2],
-    ... [2, 3],
+    ... [5, 3],
     ... [4, 5]
     ... ]
     >>> print(lazy_matrix_mul(m_a, m_b))
@@ -111,19 +111,19 @@ not a list, a ValueError is raised.
 
 ::
 
-    >>> print(lazy_matrix_mul("not a list", [[1, 2]]))
+    >>> print(lazy_matrix_mul("NOT a list", [[3, 2]]))
     Traceback (most recent call last):
     ValueError: Scalar operands are not allowed, use '*' instead
 
 ::
 
-    >>> print(lazy_matrix_mul([[1, 2]], "also not a list"))
+    >>> print(lazy_matrix_mul([[5, 2]], "NOT a list1"))
     Traceback (most recent call last):
     ValueError: Scalar operands are not allowed, use '*' instead
 
 ::
 
-    >>> print(lazy_matrix_mul("not a list", "also not a list"))
+    >>> print(lazy_matrix_mul("NOT a list", "NOT a list1"))
     Traceback (most recent call last):
     ValueError: Scalar operands are not allowed, use '*' instead
 
@@ -159,7 +159,7 @@ integers or floats! Otherwise, a ValueError or TypeError is raised
 
 ::
 
-    >>> print(lazy_matrix_mul([[1, "non-number"]], [[3, 4]]))
+    >>> print(lazy_matrix_mul([[1, "NaN"]], [[3, 4]]))
     Traceback (most recent call last):
     ValueError: shapes (1,2) and (1,2) not aligned: 2 (dim 1) != 1 (dim 0)
 
@@ -171,22 +171,23 @@ integers or floats! Otherwise, a ValueError or TypeError is raised
 
 ::
 
-    >>> print(lazy_matrix_mul([[1, "non-number"]], [[{"a": 1}, 8.8]]))
+    >>> print(lazy_matrix_mul([[1, "NaN"]], [[{"a": 1}, 8.8]]))
     Traceback (most recent call last):
     TypeError: Object arrays are not currently supported
 
-Finally, the length of all rows in matrices ``m_a`` and ``m_b`` should be
-equivalent. Otherwise, a ValueError is raised.
+For matrices m_a and m_b to be compatible for certain operations, they must
+have the same number of rows. If this condition is not met, a ValueError
+exception is raised
 
 ::
 
     >>> m_a = [
-    ... [1, 2],
-    ... [3, 4, 5]
+    ... [3, 2],
+    ... [4, 5, 6]
     ... ]
     >>> m_b = [
-    ... [1, 2],
-    ... [3, 4]
+    ... [1, 4],
+    ... [5, 8]
     ... ]
     >>> print(lazy_matrix_mul(m_a, m_b))
     Traceback (most recent call last):
@@ -195,12 +196,12 @@ equivalent. Otherwise, a ValueError is raised.
 ::
 
     >>> m_a = [
-    ... [1, 2],
-    ... [3, 4]
+    ... [5, 6],
+    ... [7, 8]
     ... ]
     >>> m_b = [
     ... [1, 2],
-    ... [3, 4, 5]
+    ... [5, 3, 4]
     ... ]
     >>> print(lazy_matrix_mul(m_a, m_b))
     Traceback (most recent call last):
@@ -209,8 +210,8 @@ equivalent. Otherwise, a ValueError is raised.
 ::
 
     >>> m_a = [
-    ... [1, 2],
-    ... [3, 4, 5]
+    ... [9, 5],
+    ... [8, 3, 7]
     ... ]
     >>> m_b = m_a
     >>> print(lazy_matrix_mul(m_a, m_b))
