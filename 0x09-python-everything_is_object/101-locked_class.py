@@ -5,7 +5,7 @@
 class LockedClass:
     """
     Enforce that LockedClass instances only possess the explicitly defined
-    attribute first_name, prohibiting dynamic attribute creation. 
+    attribute first_name, prohibiting dynamic attribute creation.
     """
 
     __slots__ = ["first_name"]
