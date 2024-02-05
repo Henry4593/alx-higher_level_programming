@@ -1,0 +1,113 @@
+===============================
+1. Print_sorted module
+===============================
+
+Import module:
+==============
+    >>> MyList = __import__('1-my_list').MyList
+
+
+Function:
+=========
+Define a class named MyList that inherits from the built-in list class.
+This class specifically manages lists containing only integer elements
+
+Section // No exceptions
+=========================
+
+Test case #0: Evaluation of the print_sorted method for positive integers
+
+    >>> my_list = MyList()
+    >>> my_list.append(1)
+    >>> my_list.append(4)
+    >>> my_list.append(2)
+    >>> my_list.append(3)
+    >>> my_list.append(5)
+    >>> print(my_list)
+    [1, 4, 2, 3, 5]
+
+    >>> my_list.print_sorted()
+    [1, 2, 3, 4, 5]
+
+    >>> print(my_list)
+    [1, 4, 2, 3, 5]
+
+Test Case #1: Verification of Sorting Functionality for Positive Integers
+
+    >>> my_list = MyList()
+    >>> my_list.append(5)
+    >>> my_list.append(4)
+    >>> my_list.append(3)
+    >>> my_list.append(2)
+    >>> my_list.append(1)
+    >>> print(my_list)
+    [5, 4, 3, 2, 1]
+
+    >>> my_list.print_sorted()
+    [1, 2, 3, 4, 5]
+
+    >>> print(my_list)
+    [5, 4, 3, 2, 1]
+
+Test Case #2: Verification of Empty List Handling
+
+    >>> my_list = MyList()
+    >>> print(my_list)
+    []
+
+    >>> my_list.print_sorted()
+    []
+
+    >>> print(my_list)
+    []
+
+Test case #3: Confirming list behavior without modifications.
+
+    >>> my_list = MyList()
+    >>> my_list.append(-5)
+    >>> my_list.append(-4)
+    >>> my_list.append(-3)
+    >>> my_list.append(-2)
+    >>> my_list.append(-1)
+    >>> print(my_list)
+    [-5, -4, -3, -2, -1]
+
+    >>> my_list.print_sorted()
+    [-5, -4, -3, -2, -1]
+
+    >>> print(my_list)
+    [-5, -4, -3, -2, -1]
+
+Test Case #4: Ordering a Descending List of Negative Integers
+
+    >>> my_list = MyList()
+    >>> my_list.append(-1)
+    >>> my_list.append(-4)
+    >>> my_list.append(-2)
+    >>> my_list.append(-3)
+    >>> my_list.append(-5)
+    >>> print(my_list)
+    [-1, -4, -2, -3, -5]
+
+    >>> my_list.print_sorted()
+    [-5, -4, -3, -2, -1]
+
+    >>> print(my_list)
+    [-1, -4, -2, -3, -5]
+
+
+Section // Attribute Errors
+============================
+
+Test Case #5: Behavior When print_sorted is Called with a Tuple
+
+    >>> my_list = (1, 2)
+    >>> print(my_list)
+    (1, 2)
+    
+    >>> my_list.print_sorted()
+    Traceback (most recent call last):
+    AttributeError: 'tuple' object has no attribute 'print_sorted'
+
+    >>> print(my_list)
+    (1, 2)
