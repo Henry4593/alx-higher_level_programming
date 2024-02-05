@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """Creates a Square class as a specialized version of the Rectangle class."""
 
-BaseGeometry = __import__('7-base_geometry').BaseGeometry
+#BaseGeometry = __import__('7-base_geometry').BaseGeometry
 Rectangle = __import__('9-rectangle').Rectangle
 
 
