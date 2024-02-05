@@ -1,8 +1,9 @@
-"""Defines a function to check if an object is an exact instance of a class.
+"""
+    Defines a function to check if an object is an exact instance of a class.
 
     This function takes two arguments:
-    - `obj`: The object to check.
-    - `a_class`: The class to compare the type of `obj` to.
+      `obj`: The object to check.
+      `a_class`: The class to compare the type of `obj` to.
 
     It returns `True` if `obj` is an exact instance of `a_class`, and `False`
     otherwise.
