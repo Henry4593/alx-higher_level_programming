@@ -1,19 +1,21 @@
-"""Defines a function to check if an object is an exact instance of a class.
+#!/usr/bin/python3
+
+"""Provides a function to determine if an object belongs directly to a
+    specific class.
 """
 
 
 def is_same_class(obj, a_class):
     """
-    Checks if an object is an exact instance of a given class.
+    Determines whether an object is an exact instance of a particular class.
 
     Args:
-        obj: The object to check.
-        a_class: The class to compare the type of obj to.
+        obj: The object to evaluate.
+        a_class: The class to compare against.
 
     Returns:
-        True if obj is an exact instance of a_class, False otherwise.
+        True if obj is a direct instance of a_class, False otherwise.
     """
 
-    if type(obj) == a_class:
-        return True
-    return False
+    # Determines whether the object's type precisely matches the given class.
+    return type(obj) == a_class
