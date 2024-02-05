@@ -3,7 +3,8 @@
 
 
 class BaseGeometry:
-    """Represents base geometry.
+    """
+    Represents base geometry.
 
     This class provides a foundation for defining geometric shapes. It
     includes a method for validating integer parameters and a placeholder
@@ -19,7 +20,7 @@ class BaseGeometry:
             It should be implemented in subclasses to provide specific
             area calculations.
         """
-    raise Exception("area() is not implemented")
+        raise Exception("area() is not implemented")
 
     def integer_validator(self, name, value):
         """Validates a parameter as an integer.

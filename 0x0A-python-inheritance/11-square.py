@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """Creates a Square class as a specialized version of the Rectangle class."""
 
-#BaseGeometry = __import__('7-base_geometry').BaseGeometry
 Rectangle = __import__('9-rectangle').Rectangle
 
 
@@ -19,7 +18,7 @@ class Square(Rectangle):
         super().__init__(size, size)
         self.__size = size
 
-    def __str__(self):
+    def __str__(self) -> str:
         """Provides a formatted string representation of the square.
 
         Returns:
