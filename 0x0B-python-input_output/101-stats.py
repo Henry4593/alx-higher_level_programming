@@ -1,57 +1,52 @@
 #!/usr/bin/python3
-"""Processes input from standard input, calculating and reporting
-    statistics.
-"""
+import sys
 
 
-def print_stats(size: int, status_codes: dict) -> None:
-    """Displays accumulated metrics, including total file size and status code
-       counts.
+def print_info():
+    print('File size: {:d}'.format(file_size))
 
-    Args:
-        size: The total size of processed files.
-        status_codes: A dictionary containing the counts of encountered status
-                      codes.
-    """
-
-    print("File size: {}".format(size))
-    for code, count in sorted(status_codes.items()):
-        print("{}: {}".format(code, count))
+    for scode, code_times in sorted(status_codes.items()):
+        if code_times > 0:
+            print('{}: {:d}'.format(scode, code_times))
 
 
-if __name__ == "__main__":
-    """Main execution block, handling input processing and metric reporting."""
+status_codes = {
+    '200': 0,
+    '301': 0,
+    '400': 0,
+    '401': 0,
+    '403': 0,
+    '404': 0,
+    '405': 0,
+    '500': 0
+}
 
-    import sys
+lc = 0
+file_size = 0
 
-    size = 0
-    status_codes = {}
-    valid_codes = ["200", "301", "400", "401", "403", "404", "405", "500"]
-    count = 0
+try:
+    for line in sys.stdin:
+        if lc != 0 and lc % 10 == 0:
+            print_info()
 
-    try:
-        for line in sys.stdin:
-            count += 1
+        pieces = line.split()
 
-            if count == 10 or count == 1:
-                print_stats(size, status_codes)
-                count = 1
+        try:
+            status = int(pieces[-2])
 
-            line_parts = line.split()
-            try:
-                size += int(line_parts[-1])
-            except (IndexError, ValueError):
-                pass
+            if str(status) in status_codes.keys():
+                status_codes[str(status)] += 1
+        except:
+            pass
 
-            try:
-                if line_parts[-2] in valid_codes:
-                    status_codes[line_parts[-2]] = (status_codes.
-                                                    get(line_parts[-2], 0) + 1)
-            except IndexError:
-                pass
+        try:
+            file_size += int(pieces[-1])
+        except:
+            pass
 
-        print_stats(size, status_codes)
+        lc += 1
 
-    except KeyboardInterrupt:
-        print_stats(size, status_codes)
-        raise
+    print_info()
+except KeyboardInterrupt:
+    print_info()
+    raise
