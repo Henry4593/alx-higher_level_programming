@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """Provides a function for appending text to UTF-8 files."""
 
 
@@ -15,5 +16,5 @@ def append_write(filename="", text=""):
         OSError: If an error occurs while opening or writing to the file.
     """
 
-    with open(filename, "a", encoding="utf-8") as f:
-        return f.write(text)
+    with open(filename, "a", encoding="utf-8") as file_append:
+        return file_append.write(text)
