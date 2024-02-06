@@ -33,12 +33,10 @@ if __name__ == "__main__":
         for line in sys.stdin:
             count += 1
 
-            # Process every 10 lines or upon keyboard interruption
             if count == 10 or count == 1:
                 print_stats(size, status_codes)
                 count = 1
 
-            # Extract file size and status code from parsed line
             line_parts = line.split()
             try:
                 size += int(line_parts[-1])
@@ -52,7 +50,6 @@ if __name__ == "__main__":
             except IndexError:
                 pass
 
-        # Print final statistics
         print_stats(size, status_codes)
 
     except KeyboardInterrupt:
