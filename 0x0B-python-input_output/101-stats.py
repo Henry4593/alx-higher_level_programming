@@ -1,8 +1,14 @@
 #!/usr/bin/python3
+"""Processes input lines from standard input, tracking file size and status
+   code counts.
+"""
+
 import sys
 
 
-def print_info():
+def print_stats():
+    """Prints the current file size and counts of tracked status codes."""
+
     print('File size: {:d}'.format(file_size))
 
     for scode, code_times in sorted(status_codes.items()):
@@ -21,32 +27,30 @@ status_codes = {
     '500': 0
 }
 
-lc = 0
+line_count = 0
 file_size = 0
 
 try:
     for line in sys.stdin:
-        if lc != 0 and lc % 10 == 0:
-            print_info()
+        if line_count != 0 and line_count % 10 == 0:
+            print_stats()
 
         pieces = line.split()
 
         try:
             status = int(pieces[-2])
-
-            if str(status) in status_codes.keys():
-                status_codes[str(status)] += 1
-        except:
+            status_codes[str(status)] += 1
+        except (ValueError, IndexError):
             pass
 
         try:
             file_size += int(pieces[-1])
-        except:
+        except (ValueError, IndexError):
             pass
 
-        lc += 1
+        line_count += 1
 
-    print_info()
+    print_stats()
 except KeyboardInterrupt:
-    print_info()
+    print_stats()
     raise
