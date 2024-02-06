@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """Provides a function to convert Python classes to JSON-like dictionaries."""
 
 
