@@ -15,5 +15,5 @@ def append_write(filename="", text=""):
         OSError: If an error occurs while opening or writing to the file.
     """
 
-    with open(filename, "a", encoding="utf-8") as file_append:
-        return file_append.write(text)
+    with open(filename, "a", encoding="utf-8") as f:
+        return f.write(text)
