@@ -10,14 +10,14 @@ class Base:
     """Base model.
     This Represents the "base" for all other classes in project 0x0C*.
     Private Class Attributes:
-        __nb_object (int): Number of instantiated Bases..
+        __nb_object (int): Number of instantiated Bases.
     """
 
     __nb_objects = 0
 
     def __init__(self, id=None):
         """Initialize a new Base.
-            Args:
+        Args:
             id (int): The identity of the new Base.
         """
         if id is not None:
@@ -47,7 +47,7 @@ class Base:
             if list_objs is None:
                 jsonfile.write("[]")
             else:
-                list_dicts = [objct.to_dictionary() for objct in list_objs]
+                list_dicts = [o.to_dictionary() for o in list_objs]
                 jsonfile.write(Base.to_json_string(list_dicts))
 
     @staticmethod
@@ -87,7 +87,7 @@ class Base:
         """
         filename = str(cls.__name__) + ".json"
         try:
-            with open(filename, "rect") as jsonfile:
+            with open(filename, "r") as jsonfile:
                 list_dicts = Base.from_json_string(jsonfile.read())
                 return [cls.create(**d) for d in list_dicts]
         except IOError:
@@ -122,14 +122,14 @@ class Base:
         """
         filename = cls.__name__ + ".csv"
         try:
-            with open(filename, "rect", newline="") as csvfile:
+            with open(filename, "r", newline="") as csvfile:
                 if cls.__name__ == "Rectangle":
                     fieldnames = ["id", "width", "height", "x", "y"]
                 else:
                     fieldnames = ["id", "size", "x", "y"]
                 list_dicts = csv.DictReader(csvfile, fieldnames=fieldnames)
-                list_dicts = [dict([key, int(value)] for key, value
-                              in d.items()) for d in list_dicts]
+                list_dicts = [dict([k, int(v)] for k, v in d.items())
+                              for d in list_dicts]
                 return [cls.create(**d) for d in list_dicts]
         except IOError:
             return []
@@ -141,35 +141,35 @@ class Base:
             list_rectangles (list): A list of Rectangle objects to draw.
             list_squares (list): A list of Square objects to draw.
         """
-        turt_Obj = turtle.Turtle()
-        turt_Obj.screen.bgcolor("#b7312c")
-        turt_Obj.pensize(3)
-        turt_Obj.shape("turtle")
+        turt = turtle.Turtle()
+        turt.screen.bgcolor("#b7312c")
+        turt.pensize(3)
+        turt.shape("turtle")
 
-        turt_Obj.color("#ffffff")
+        turt.color("#ffffff")
         for rect in list_rectangles:
-            turt_Obj.showturtle()
-            turt_Obj.up()
-            turt_Obj.goto(rect.x, rect.y)
-            turt_Obj.down()
-            for idx in range(2):
-                turt_Obj.forward(rect.width)
-                turt_Obj.left(90)
-                turt_Obj.forward(rect.height)
-                turt_Obj.left(90)
-            turt_Obj.hideturtle()
+            turt.showturtle()
+            turt.up()
+            turt.goto(rect.x, rect.y)
+            turt.down()
+            for i in range(2):
+                turt.forward(rect.width)
+                turt.left(90)
+                turt.forward(rect.height)
+                turt.left(90)
+            turt.hideturtle()
 
-        turt_Obj.color("#b5e3d8")
+        turt.color("#b5e3d8")
         for sq in list_squares:
-            turt_Obj.showturtle()
-            turt_Obj.up()
-            turt_Obj.goto(sq.x, sq.y)
-            turt_Obj.down()
-            for idx in range(2):
-                turt_Obj.forward(sq.width)
-                turt_Obj.left(90)
-                turt_Obj.forward(sq.height)
-                turt_Obj.left(90)
-            turt_Obj.hideturtle()
+            turt.showturtle()
+            turt.up()
+            turt.goto(sq.x, sq.y)
+            turt.down()
+            for i in range(2):
+                turt.forward(sq.width)
+                turt.left(90)
+                turt.forward(sq.height)
+                turt.left(90)
+            turt.hideturtle()
 
         turtle.exitonclick()
