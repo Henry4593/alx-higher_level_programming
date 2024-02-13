@@ -1,28 +1,30 @@
 #!/usr/bin/python3
-"""Defines a square class."""
+"""Represents a square."""
 from models.rectangle import Rectangle
 
 
 class Square(Rectangle):
-    """Represent a square."""
+    """A subclass of Rectangle representing a square."""
 
     def __init__(self, size, x=0, y=0, id=None):
-        """Initialize a new Square.
+        """Initializes a new Square.
+
         Args:
-            size (int): The size of the new Square.
-            x (int): The x coordinate of the new Square.
-            y (int): The y coordinate of the new Square.
-            id (int): The identity of the new Square.
+            size (int): The size of the square (also sets height).
+            x (int, optional): The x-coordinate. Defaults to 0.
+            y (int, optional): The y-coordinate. Defaults to 0.
+            id (int, optional): The unique identifier. Defaults to None.
         """
         super().__init__(size, size, x, y, id)
 
     @property
     def size(self):
-        """Get/set the size of the Square."""
+        """Gets or sets the size of the square."""
         return self.width
 
     @size.setter
     def size(self, value):
+        """Sets the size of the square (also sets height)."""
         self.width = value
         self.height = value
 
@@ -53,18 +55,18 @@ class Square(Rectangle):
                 a += 1
 
         elif kwargs and len(kwargs) != 0:
-            for k, v in kwargs.items():
-                if k == "id":
-                    if v is None:
+            for key, value in kwargs.items():
+                if key == "id":
+                    if value is None:
                         self.__init__(self.size, self.x, self.y)
                     else:
-                        self.id = v
-                elif k == "size":
-                    self.size = v
-                elif k == "x":
-                    self.x = v
-                elif k == "y":
-                    self.y = v
+                        self.id = value
+                elif key == "size":
+                    self.size = value
+                elif key == "x":
+                    self.x = value
+                elif key == "y":
+                    self.y = value
 
     def to_dictionary(self):
         """Return the dictionary representation of the Square."""
@@ -76,6 +78,6 @@ class Square(Rectangle):
         }
 
     def __str__(self):
-        """Return the print() and str() representation of a Square."""
+        """Returns a string representation of the square."""
         return "[Square] ({}) {}/{} - {}".format(self.id, self.x, self.y,
                                                  self.width)

@@ -1,24 +1,39 @@
 #!/usr/bin/python3
-"""Defines a rectangle class."""
+"""Defines a rectangle class inheriting from Base class."""
 from models.base import Base
 
 
 class Rectangle(Base):
-    """Represent a rectangle."""
+    """Represent a rectangle with width, height, coordinates, and optional id.
+
+    Attributes:
+        width (int): The width of the rectangle. Must be a positive integer.
+        height (int): The height of the rectangle. Must be a positive integer.
+        x (int): The x-coordinate of the bottom-left corner of the rectangle.
+                 Must be non-negative integer.
+        y (int): The y-coordinate of the bottom-left corner of the rectangle.
+                 Must be non-negative integer.
+        id (int, optional): The unique identifier of the rectangle. If not
+                given, automatically assigned by Base class.
+
+    Raises:
+        TypeError: If either width, height, x, or y is not an integer.
+        ValueError: If either width or height is not positive, or if x or y
+                   is negative.
+    """
 
     def __init__(self, width, height, x=0, y=0, id=None):
         """Initialize a new Rectangle.
+
         Args:
             width (int): The width of the new Rectangle.
             height (int): The height of the new Rectangle.
-            x (int): The x coordinate of the new Rectangle.
-            y (int): The y coordinate of the new Rectangle.
-            id (int): The identity of the new Rectangle.
-        Raises:
-            TypeError: If either of width or height is not an int.
-            ValueError: If either of width or height <= 0.
-            TypeError: If either of x or y is not an int.
-            ValueError: If either of x or y < 0.
+            x (int, optional): The x-coordinate of the new Rectangle.
+                 Defaults to 0.
+            y (int, optional): The y-coordinate of the new Rectangle.
+                 Defaults to 0.
+            id (int, optional): The identity of the new Rectangle.
+                 Defaults to None.
         """
         self.width = width
         self.height = height
@@ -28,11 +43,18 @@ class Rectangle(Base):
 
     @property
     def width(self):
-        """Set/get the width of the Rectangle."""
+        """Get the width of the rectangle."""
         return self.__width
 
     @width.setter
     def width(self, value):
+        """Set the width of the rectangle.
+        Args:
+            value (int): The new width of the rectangle.
+        Raises:
+            TypeError: If value is not an integer.
+            ValueError: If value is not positive.
+        """
         if type(value) != int:
             raise TypeError("width must be an integer")
         if value <= 0:
@@ -41,7 +63,7 @@ class Rectangle(Base):
 
     @property
     def height(self):
-        """Set/get the height of the Rectangle."""
+        """get the height of the Rectangle."""
         return self.__height
 
     @height.setter
@@ -54,7 +76,7 @@ class Rectangle(Base):
 
     @property
     def x(self):
-        """Set/get the x coordinate of the Rectangle."""
+        """get the x coordinate of the Rectangle."""
         return self.__x
 
     @x.setter
@@ -67,7 +89,7 @@ class Rectangle(Base):
 
     @property
     def y(self):
-        """Set/get the y coordinate of the Rectangle."""
+        """get the y coordinate of the Rectangle."""
         return self.__y
 
     @y.setter
@@ -95,15 +117,26 @@ class Rectangle(Base):
             print("")
 
     def update(self, *args, **kwargs):
-        """Update the Rectangle.
+        """Updates the rectangle with new values.
+
         Args:
-            *args (ints): New attribute values.
-                - 1st argument represents id attribute
-                - 2nd argument represents width attribute
-                - 3rd argument represent height attribute
-                - 4th argument represents x attribute
-                - 5th argument represents y attribute
-            **kwargs (dict): New key/value pairs of attributes.
+            *args (ints, optional): New values for specific attributes.
+            - 1st argument: The new id (optional).
+            - 2nd argument: The new width (optional).
+            - 3rd argument: The new height (optional).
+            - 4th argument: The new x-coordinate (optional).
+            - 5th argument: The new y-coordinate (optional).
+        **kwargs (dict, optional): New key/value pairs for attributes.
+            - 'id': The new ID.
+            - 'width': The new width.
+            - 'height': The new height.
+            - 'x': The new x-coordinate.
+            - 'y': The new y-coordinate.
+
+        Raises:
+            TypeError: If any value in `args` is not an integer.
+            ValueError: If any value in `args` is not positive for width or
+                        height, or negative for x or y.
         """
         if args and len(args) != 0:
             a = 0
@@ -124,20 +157,20 @@ class Rectangle(Base):
                 a += 1
 
         elif kwargs and len(kwargs) != 0:
-            for k, v in kwargs.items():
-                if k == "id":
-                    if v is None:
+            for key, value in kwargs.items():
+                if key == "id":
+                    if value is None:
                         self.__init__(self.width, self.height, self.x, self.y)
                     else:
-                        self.id = v
-                elif k == "width":
-                    self.width = v
-                elif k == "height":
-                    self.height = v
-                elif k == "x":
-                    self.x = v
-                elif k == "y":
-                    self.y = v
+                        self.id = value
+                elif key == "width":
+                    self.width = value
+                elif key == "height":
+                    self.height = value
+                elif key == "x":
+                    self.x = value
+                elif key == "y":
+                    self.y = value
 
     def to_dictionary(self):
         """Return the dictionary representation of a Rectangle."""

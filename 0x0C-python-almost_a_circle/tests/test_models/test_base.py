@@ -18,7 +18,7 @@ from models.square import Square
 
 
 class TestBase_instantiation(unittest.TestCase):
-    """Unittests for testing instantiation of the Base class."""
+    """Unittests: testing instantiation of the Base class."""
 
     def test_no_arg(self):
         b1 = Base()
@@ -105,15 +105,15 @@ class TestBase_instantiation(unittest.TestCase):
 
 
 class TestBase_to_json_string(unittest.TestCase):
-    """Unittests for testing to_json_string method of Base class."""
+    """Unittests: testing to_json_string method of Base class."""
 
     def test_to_json_string_rectangle_type(self):
-        r = Rectangle(10, 7, 2, 8, 6)
-        self.assertEqual(str, type(Base.to_json_string([r.to_dictionary()])))
+        rctngl = Rectangle(10, 7, 2, 8, 6)
+        self.assertEqual(str, type(Base.to_json_string([rctngl.to_dictionary()])))
 
     def test_to_json_string_rectangle_one_dict(self):
-        r = Rectangle(10, 7, 2, 8, 6)
-        self.assertTrue(len(Base.to_json_string([r.to_dictionary()])) == 53)
+        rctngl = Rectangle(10, 7, 2, 8, 6)
+        self.assertTrue(len(Base.to_json_string([rctngl.to_dictionary()])) == 53)
 
     def test_to_json_string_rectangle_two_dicts(self):
         r1 = Rectangle(2, 3, 5, 19, 2)
@@ -122,12 +122,12 @@ class TestBase_to_json_string(unittest.TestCase):
         self.assertTrue(len(Base.to_json_string(list_dicts)) == 106)
 
     def test_to_json_string_square_type(self):
-        s = Square(10, 2, 3, 4)
-        self.assertEqual(str, type(Base.to_json_string([s.to_dictionary()])))
+        sqr = Square(10, 2, 3, 4)
+        self.assertEqual(str, type(Base.to_json_string([sqr.to_dictionary()])))
 
     def test_to_json_string_square_one_dict(self):
-        s = Square(10, 2, 3, 4)
-        self.assertTrue(len(Base.to_json_string([s.to_dictionary()])) == 39)
+        sqr = Square(10, 2, 3, 4)
+        self.assertTrue(len(Base.to_json_string([sqr.to_dictionary()])) == 39)
 
     def test_to_json_string_square_two_dicts(self):
         s1 = Square(10, 2, 3, 4)
@@ -151,7 +151,7 @@ class TestBase_to_json_string(unittest.TestCase):
 
 
 class TestBase_save_to_file(unittest.TestCase):
-    """Unittests for testing save_to_file method of Base class."""
+    """Unittests: testing save_to_file method of Base class."""
 
     @classmethod
     def tearDown(self):
@@ -170,8 +170,8 @@ class TestBase_save_to_file(unittest.TestCase):
             pass
 
     def test_save_to_file_one_rectangle(self):
-        r = Rectangle(10, 7, 2, 8, 5)
-        Rectangle.save_to_file([r])
+        rctngl = Rectangle(10, 7, 2, 8, 5)
+        Rectangle.save_to_file([rctngl])
         with open("Rectangle.json", "r") as f:
             self.assertTrue(len(f.read()) == 53)
 
@@ -183,8 +183,8 @@ class TestBase_save_to_file(unittest.TestCase):
             self.assertTrue(len(f.read()) == 105)
 
     def test_save_to_file_one_square(self):
-        s = Square(10, 7, 2, 8)
-        Square.save_to_file([s])
+        sqr = Square(10, 7, 2, 8)
+        Square.save_to_file([sqr])
         with open("Square.json", "r") as f:
             self.assertTrue(len(f.read()) == 39)
 
@@ -196,16 +196,16 @@ class TestBase_save_to_file(unittest.TestCase):
             self.assertTrue(len(f.read()) == 77)
 
     def test_save_to_file_cls_name_for_filename(self):
-        s = Square(10, 7, 2, 8)
-        Base.save_to_file([s])
+        sqr = Square(10, 7, 2, 8)
+        Base.save_to_file([sqr])
         with open("Base.json", "r") as f:
             self.assertTrue(len(f.read()) == 39)
 
     def test_save_to_file_overwrite(self):
-        s = Square(9, 2, 39, 2)
-        Square.save_to_file([s])
-        s = Square(10, 7, 2, 8)
-        Square.save_to_file([s])
+        sqr = Square(9, 2, 39, 2)
+        Square.save_to_file([sqr])
+        sqr = Square(10, 7, 2, 8)
+        Square.save_to_file([sqr])
         with open("Square.json", "r") as f:
             self.assertTrue(len(f.read()) == 39)
 
@@ -229,7 +229,7 @@ class TestBase_save_to_file(unittest.TestCase):
 
 
 class TestBase_from_json_string(unittest.TestCase):
-    """Unittests for testing from_json_string method of Base class."""
+    """Unittests: testing from_json_string method of Base class."""
 
     def test_from_json_string_type(self):
         list_input = [{"id": 89, "width": 10, "height": 4}]
@@ -283,7 +283,7 @@ class TestBase_from_json_string(unittest.TestCase):
 
 
 class TestBase_create(unittest.TestCase):
-    """Unittests for testing create method of Base class."""
+    """Unittests: testing create method of Base class."""
 
     def test_create_rectangle_original(self):
         r1 = Rectangle(3, 5, 1, 2, 7)
@@ -335,11 +335,11 @@ class TestBase_create(unittest.TestCase):
 
 
 class TestBase_load_from_file(unittest.TestCase):
-    """Unittests for testing load_from_file_method of Base class."""
+    """Unittests: testing load_from_file_method of Base class."""
 
     @classmethod
     def tearDown(self):
-        """Delete any created files."""
+        """Delete just any created files."""
         try:
             os.remove("Rectangle.json")
         except IOError:
@@ -401,11 +401,11 @@ class TestBase_load_from_file(unittest.TestCase):
 
 
 class TestBase_save_to_file_csv(unittest.TestCase):
-    """Unittests for testing save_to_file_csv method of Base class."""
+    """Unittests: testing save_to_file_csv method of Base class."""
 
     @classmethod
     def tearDown(self):
-        """Delete any created files."""
+        """Delete just any created files."""
         try:
             os.remove("Rectangle.csv")
         except IOError:
@@ -420,8 +420,8 @@ class TestBase_save_to_file_csv(unittest.TestCase):
             pass
 
     def test_save_to_file_csv_one_rectangle(self):
-        r = Rectangle(10, 7, 2, 8, 5)
-        Rectangle.save_to_file_csv([r])
+        rctngl = Rectangle(10, 7, 2, 8, 5)
+        Rectangle.save_to_file_csv([rctngl])
         with open("Rectangle.csv", "r") as f:
             self.assertTrue("5,10,7,2,8", f.read())
 
@@ -433,8 +433,8 @@ class TestBase_save_to_file_csv(unittest.TestCase):
             self.assertTrue("5,10,7,2,8\n2,4,1,2,3", f.read())
 
     def test_save_to_file_csv_one_square(self):
-        s = Square(10, 7, 2, 8)
-        Square.save_to_file_csv([s])
+        sqr = Square(10, 7, 2, 8)
+        Square.save_to_file_csv([sqr])
         with open("Square.csv", "r") as f:
             self.assertTrue("8,10,7,2", f.read())
 
@@ -446,16 +446,16 @@ class TestBase_save_to_file_csv(unittest.TestCase):
             self.assertTrue("8,10,7,2\n3,8,1,2", f.read())
 
     def test_save_to_file__csv_cls_name(self):
-        s = Square(10, 7, 2, 8)
-        Base.save_to_file_csv([s])
+        sqr = Square(10, 7, 2, 8)
+        Base.save_to_file_csv([sqr])
         with open("Base.csv", "r") as f:
             self.assertTrue("8,10,7,2", f.read())
 
     def test_save_to_file_csv_overwrite(self):
-        s = Square(9, 2, 39, 2)
-        Square.save_to_file_csv([s])
-        s = Square(10, 7, 2, 8)
-        Square.save_to_file_csv([s])
+        sqr = Square(9, 2, 39, 2)
+        Square.save_to_file_csv([sqr])
+        sqr = Square(10, 7, 2, 8)
+        Square.save_to_file_csv([sqr])
         with open("Square.csv", "r") as f:
             self.assertTrue("8,10,7,2", f.read())
 
@@ -479,11 +479,11 @@ class TestBase_save_to_file_csv(unittest.TestCase):
 
 
 class TestBase_load_from_file_csv(unittest.TestCase):
-    """Unittests for testing load_from_file_csv method of Base class."""
+    """Unittests: testing load_from_file_csv method of Base class."""
 
     @classmethod
     def tearDown(self):
-        """Delete any created files."""
+        """Delete just any created files."""
         try:
             os.remove("Rectangle.csv")
         except IOError:
