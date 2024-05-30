@@ -1,0 +1,5 @@
+#!/usr/bin/bash
+echo "downloading silently..."
+wget --quiet $1
+echo "\nDownloaded successfully!"
+
